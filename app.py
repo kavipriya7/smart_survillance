@@ -12,11 +12,10 @@ from datetime import datetime, timedelta
 import sys
 import os
 
-# Add models directory to path
+# Add project root to path (so `import models` works)
 current_dir = os.path.dirname(os.path.abspath(__file__))
-models_dir = os.path.join(current_dir, 'models')
-if models_dir not in sys.path:
-    sys.path.insert(0, models_dir)
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
 try:
     from models import (
