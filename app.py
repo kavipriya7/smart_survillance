@@ -3,14 +3,21 @@ Smart Health Surveillance and Early Warning Platform
 Interactive Dashboard for Water-Borne and Vector-Borne Disease Prediction
 """
 
-import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.graph_objects as go
-import plotly.express as px
-from datetime import datetime, timedelta
-import sys
-import os
+import os, sys
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+
+try:
+    from models.data_processor import DataProcessor
+    from models.model_builder import DiseasePredictor, DiseaseSeverityClassifier
+    from models.alert_system import AlertSystem, WeatherRiskAnalyzer, AlertLevel
+    from models.community_reporting import CommunityReportingSystem, ReportStatus, SymptomType
+except Exception as e:
+    st.error(f"Critical import error: {type(e).__name__}: {e}")
+    st.write("sys.path:", sys.path)
+    st.write("cwd:", current_dir)
+    st.stop()
 
 # Ensure current directory is in path for module imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
