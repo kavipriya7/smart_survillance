@@ -12,18 +12,12 @@ from datetime import datetime, timedelta
 import sys
 import os
 
-# Add project root to path (so `import models` works)
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
-
+# Import modules explicitly (more reliable for cloud deployment)
 try:
-    from models import (
-        DataProcessor,
-        DiseasePredictor,
-        DiseaseSeverityClassifier,
-        AlertSystem,
-        WeatherRiskAnalyzer,
+    from models.data_processor import DataProcessor
+    from models.model_builder import DiseasePredictor, DiseaseSeverityClassifier
+    from models.alert_system import AlertSystem, WeatherRiskAnalyzer, AlertLevel
+    from models.community_reporting import (
         CommunityReportingSystem,
         ReportStatus,
         SymptomType
